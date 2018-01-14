@@ -1,0 +1,61 @@
+" --------------------------------------------------
+" Set up Vundle
+" --------------------------------------------------
+set nocompatible
+filetype off
+
+" set runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" allow Vundle to manage Vundle
+Plugin 'gmarik/Vundle.vim'
+
+" add other plugins here
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'joshdick/onedark.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'
+
+call vundle#end()
+filetype plugin indent on
+
+" --------------------------------------------------
+" Key mappings
+" --------------------------------------------------
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+imap jj <ESC>
+map <C-n> :NERDTreeToggle<CR>
+
+syntax on 
+set termguicolors
+set encoding=utf-8
+set number
+set relativenumber
+set clipboard=unnamed
+colorscheme onedark
+hi LineNr ctermfg=DarkGray
+hi CursorLineNr ctermfg=LightGray
+hi EndOfBuffer ctermfg=DarkGray
+set cc=80
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
+
+" Make cursor shape mode dependent (note: we need double quotes!)
+if exists('$TMUX')
+" Vertical bar in insert mode, underscore in replace mode and block in
+" normal mode
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>[4 q\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
+else
+" If we don't use tmux but use an xterm terminal:
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+endif
